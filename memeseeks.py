@@ -1,5 +1,7 @@
 """Use the Master of All Science API."""
 
+from random import randint
+
 import requests
 
 # endpoints of interest: search, caption
@@ -10,7 +12,7 @@ MOAS_URL = "https://masterofallscience.com/"
 def initial_response(response_url):
     """Respond to slack to avoid timeouts."""
     resp = "Caaann Do!"
-    requests.post(response_url, json={'text': resp})
+    requests.post(response_url, json={"text": resp})
 
 
 def respond_to_slack(response_url, payload):
@@ -21,13 +23,22 @@ def respond_to_slack(response_url, payload):
     })
 
 
+# Gen random number to help select random image from search result
+def random_gen(resp_items):
+    """Generate psuedo random number."""
+    min = 1
+    max = resp_items
+    return randint(min, max)
+
+
 # Basic search query
 def img_search():
     """Find image based on search string."""
     query_string = "tiny rick"
     res = requests.get(f'{MOAS_API_URL}search?q={query_string}')
-    episode = res.json()[2]["Episode"]
-    timestamp = res.json()[2]["Timestamp"]
+    choice = random_gen(len(res.json()))
+    episode = res.json()[choice]["Episode"]
+    timestamp = res.json()[choice]["Timestamp"]
     return episode, timestamp
 
 
