@@ -10,10 +10,37 @@ app = Flask(__name__)
 def mrmemeseeks():
     """Execute the mrmemeseek slack command."""
     response_url = request.form.get('response_url')
-    memeseeks.initial_response(response_url)
+    command = request.form.get('command')[1:]
+    memeseeks.initial_response(command, response_url)
     query = request.form.get('text').split(";")[0]
     meme_text = request.form.get('text').split(";")[1]
-    payload = memeseeks.img_select(query, meme_text)
+    payload = memeseeks.img_select(command, query, meme_text)
+    memeseeks.respond_to_slack(response_url, payload)
+    return 'All Done!'
+
+
+@app.route("/frinkiac", methods=['POST'])
+def frinkiac():
+    """Execute the mrmemeseek slack command."""
+    response_url = request.form.get('response_url')
+    command = request.form.get('command')[1:]
+    memeseeks.initial_response(command, response_url)
+    query = request.form.get('text').split(";")[0]
+    meme_text = request.form.get('text').split(";")[1]
+    payload = memeseeks.img_select(command, query, meme_text)
+    memeseeks.respond_to_slack(response_url, payload)
+    return 'All Done!'
+
+
+@app.route("/morbotron", methods=['POST'])
+def morbotron():
+    """Execute the mrmemeseek slack command."""
+    response_url = request.form.get('response_url')
+    command = request.form.get('command')[1:]
+    memeseeks.initial_response(command, response_url)
+    query = request.form.get('text').split(";")[0]
+    meme_text = request.form.get('text').split(";")[1]
+    payload = memeseeks.img_select(command, query, meme_text)
     memeseeks.respond_to_slack(response_url, payload)
     return 'All Done!'
 
