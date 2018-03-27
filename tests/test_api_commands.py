@@ -21,7 +21,7 @@ class ApiTest(unittest.TestCase):
         self.assertEqual(morbo_res.status_code, 200)
 
 
-class CheckArgsTests(unittest.TestCase):
+class EphemeralResponseTests(unittest.TestCase):
     """Test check_args method from memeseeks.py."""
 
     @patch('memeseeks.ephemeral_response')
@@ -44,27 +44,6 @@ class CheckArgsTests(unittest.TestCase):
         slack_text = "testing; this is a test; extra arg"
         memeseeks.check_args(slack_text, "second arg")
         self.assertTrue(mock.called)
-
-    def test_check_args_single_arg(self):
-        """Test that query and meme_text get set correctly with a single arg."""
-        slack_text = "testing"
-        query, meme_text = memeseeks.check_args(slack_text, "second arg")
-        self.assertEqual(query, "testing")
-        self.assertEqual(meme_text, "")
-
-    def test_check_args_two_args_space(self):
-        """Test that query and meme_test get set corectly with two args and space."""
-        slack_text = "testing; this is a test"
-        query, meme_text = memeseeks.check_args(slack_text, "second arg")
-        self.assertEqual(query, "testing")
-        self.assertEqual(meme_text, "this is a test")
-
-    def test_check_args_two_args_no_space(self):
-        """Test that query and meme_test get set corectly with two args and space."""
-        slack_text = "testing;this is a test"
-        query, meme_text = memeseeks.check_args(slack_text, "second arg")
-        self.assertEqual(query, "testing")
-        self.assertEqual(meme_text, "this is a test")
 
 
 class ImgSearchTests(unittest.TestCase):

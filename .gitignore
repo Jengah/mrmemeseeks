@@ -102,3 +102,6 @@ ENV/
 
 # flake8
 .flake8
+
+# Pytest
+.pytest_cache
