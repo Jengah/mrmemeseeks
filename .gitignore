@@ -100,8 +100,5 @@ ENV/
 # mypy
 .mypy_cache/
 
-# flake8
-.flake8
-
 # Pytest
 .pytest_cache

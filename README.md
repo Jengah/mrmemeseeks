@@ -1,4 +1,5 @@
 # mrmemeseeks
+[![Build Status](https://travis-ci.org/Jengah/mrmemeseeks.svg?branch=master)](https://travis-ci.org/Jengah/mrmemeseeks)
 
 Utilizes the [Master of All Science](https://www.masterofallscience.com) API to create memes and gifs.
 
